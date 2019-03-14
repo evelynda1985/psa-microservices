@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface CountryServices {
 
-    public List<Country> findAll();
+    List<Country> findAll();
+
+    Country save(Country country);
 }

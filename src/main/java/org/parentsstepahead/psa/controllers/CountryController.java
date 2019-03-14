@@ -1,14 +1,15 @@
 package org.parentsstepahead.psa.controllers;
 
+import org.parentsstepahead.psa.Errors.ValidationErrorBuilder;
 import org.parentsstepahead.psa.models.Country;
 import org.parentsstepahead.psa.services.CountryServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -26,4 +27,13 @@ public class CountryController {
         }
         return new ResponseEntity<List<Country>>(countries, HttpStatus.OK);
     }
+
+    @PostMapping()
+    public ResponseEntity<?> addCountry(@Valid @RequestBody Country country, Errors errors){
+        if (errors.hasErrors()) {
+            return ResponseEntity.badRequest().body(ValidationErrorBuilder.fromBindingErrors(errors));
+        }
+        return new ResponseEntity<Country>(servicesCountries.save(country), HttpStatus.CREATED);
+    }
+
 }

@@ -1,6 +1,8 @@
 package org.parentsstepahead.psa.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "country")
@@ -11,9 +13,12 @@ public class Country {
     @Column(name = "idCountry")
     private int idCountry;
 
+    @NotBlank(message = "Abbreviation of the country cannot be empty")
+    @Size(max = 3, min = 2)
     @Column(name = "countryAbb")
     private String countryAbb;
 
+    @NotBlank(message = "Name of the country cannot be empty")
     @Column(name = "countryName")
     private String countryName;
 
