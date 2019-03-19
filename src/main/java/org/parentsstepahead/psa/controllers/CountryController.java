@@ -36,4 +36,41 @@ public class CountryController {
         return new ResponseEntity<Country>(servicesCountries.save(country), HttpStatus.CREATED);
     }
 
+    @DeleteMapping(value = "{id}/")
+    public ResponseEntity<?> deleteCountry(@PathVariable Long id){
+        if (id == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        if(servicesCountries.exist(id)) {
+            servicesCountries.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PutMapping(value = "{id}/")
+    public ResponseEntity<?> updateCountry(@PathVariable Long id, @RequestBody Country newCountry){
+        if (id == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        if (servicesCountries.exist(id))
+        {
+            return new ResponseEntity<Country>(servicesCountries.updateCountry(id,newCountry),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PatchMapping(value = "{id}/")
+    public ResponseEntity<?> updateCountryPartiallyOrComplete(@PathVariable Long id, @RequestBody Country newCountry){
+        if (id == null){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        if (servicesCountries.exist(id))
+        {
+            return new ResponseEntity<Country>(servicesCountries.updateCountryPartially(id, newCountry),HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+
 }

@@ -1,7 +1,6 @@
 package org.parentsstepahead.psa.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -11,21 +10,24 @@ public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idCountry")
-    private int idCountry;
+    private Long idCountry;
 
-    @NotBlank(message = "Abbreviation of the country cannot be empty")
     @Size(max = 3, min = 2)
     @Column(name = "countryAbb")
     private String countryAbb;
 
-    @NotBlank(message = "Name of the country cannot be empty")
     @Column(name = "countryName")
     private String countryName;
 
     public Country() {
     }
 
-    public int getIdCountry() {
+    public Country(Long idCountry, @Size(max = 3, min = 2) String countryAbb, String countryName) {
+        this.countryAbb = countryAbb;
+        this.countryName = countryName;
+    }
+
+    public Long getIdCountry() {
         return idCountry;
     }
 
@@ -42,5 +44,11 @@ public class Country {
         return "Country [idCountry=" + idCountry + ", countryAbb=" + countryAbb + ", countryName=" + countryName + "]";
     }
 
+    public void setCountryAbb(String countryAbb) {
+        this.countryAbb = countryAbb;
+    }
 
+    public void setCountryName(String countryName) {
+        this.countryName = countryName;
+    }
 }

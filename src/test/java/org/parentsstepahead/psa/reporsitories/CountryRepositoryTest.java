@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.parentsstepahead.psa.models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -15,8 +14,6 @@ public class CountryRepositoryTest {
 
     @Autowired
     private CountryRepository countryRepository;
-
-    private Country country;
 
     //I don't need to set up it because
     //I hava data already in the database
