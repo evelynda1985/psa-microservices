@@ -1,6 +1,7 @@
 package org.parentsstepahead.psa.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -13,10 +14,12 @@ public class Country {
     private Long idCountry;
 
     @Size(max = 3, min = 2)
+    @NotBlank
     @Column(name = "countryAbb")
     private String countryAbb;
 
     @Column(name = "countryName")
+    @NotBlank
     private String countryName;
 
     public Country() {
