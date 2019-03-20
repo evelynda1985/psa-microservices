@@ -38,9 +38,6 @@ public class CountryController {
 
     @DeleteMapping(value = "{id}/")
     public ResponseEntity<?> deleteCountry(@PathVariable Long id){
-        if (id == null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
         if(servicesCountries.exist(id)) {
             servicesCountries.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
@@ -50,9 +47,6 @@ public class CountryController {
 
     @PutMapping(value = "{id}/")
     public ResponseEntity<?> updateCountry(@PathVariable Long id, @RequestBody Country newCountry){
-        if (id == null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
         if (servicesCountries.exist(id))
         {
             return new ResponseEntity<Country>(servicesCountries.updateCountry(id,newCountry),HttpStatus.OK);
@@ -62,9 +56,6 @@ public class CountryController {
 
     @PatchMapping(value = "{id}/")
     public ResponseEntity<?> updateCountryPartiallyOrComplete(@PathVariable Long id, @RequestBody Country newCountry){
-        if (id == null){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
         if (servicesCountries.exist(id))
         {
             return new ResponseEntity<Country>(servicesCountries.updateCountryPartially(id, newCountry),HttpStatus.OK);

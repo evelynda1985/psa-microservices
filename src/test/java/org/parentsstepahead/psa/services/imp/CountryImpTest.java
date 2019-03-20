@@ -69,12 +69,20 @@ public class CountryImpTest {
         verify(countryRepository, times(1)).deleteById(country.getIdCountry());
     }
 
-
     @Test
     public void testExist() {
-        Country country = new Country(4L, "CA", "Canada");
-        when(countryRepository.existsById(country.getIdCountry())).thenReturn(true);
-        Assert.assertTrue(countryImp.exist(country.getIdCountry()));
+   ///AAA
+        when(countryRepository.existsByIdCountry(countryList.get(1).getIdCountry())).thenReturn(true);
+
+        Assert.assertEquals(countryImp.exist(countryList.get(1).getIdCountry()) , true);
+        verify(countryRepository, times(1)).existsByIdCountry(countryList.get(1).getIdCountry());
+    }
+
+    @Test
+    public void testExistWithNullId() {
+        Country country = new Country(null, "CA", "Canada");
+        countryImp.exist(country.getIdCountry());
+        Assert.assertEquals(countryImp.exist(country.getIdCountry()), false);
     }
 
     @Test

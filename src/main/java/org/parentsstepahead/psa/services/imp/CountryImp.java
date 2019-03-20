@@ -31,7 +31,7 @@ public class CountryImp implements CountryServices {
 
     @Override
     public boolean exist(Long id) {
-        return countryRepository.existsById(id);
+        return (id == null)?false: countryRepository.existsByIdCountry(id);
     }
 
     @Override

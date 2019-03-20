@@ -14,6 +14,8 @@ public interface CountryRepository extends CrudRepository<Country, Long> {
 
     Optional<Country> findByIdCountry(Long id);
 
+    boolean existsByIdCountry(Long id);
+
     //save is predetermine by default I don't need to create save here!
 
     public List<Country> findByCountryName(String countryName);
