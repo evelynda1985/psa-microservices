@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+//@CrossOrigin(origins = "http://localhost:8080/")
 @RestController
 @RequestMapping("/api/v1/countries")
 public class CountryController {
@@ -51,7 +52,7 @@ public class CountryController {
         {
             return new ResponseEntity<Country>(servicesCountries.updateCountry(id,newCountry),HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<String>("no se que paso",HttpStatus.NOT_FOUND);
     }
 
     @PatchMapping(value = "{id}/")
